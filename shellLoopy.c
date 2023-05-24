@@ -24,7 +24,7 @@ int hsh(data_p *info, char **av)
 			set_info(info, av);
 			builtinto_ret = builtIntoFinder(info);
 			if (builtinto_ret == -1)
-				find_cmd(info);
+				commandFinder(info);
 		}
 		else if (interactive(info))
 			_putchar('\n');
@@ -78,12 +78,12 @@ int builtIntoFinder(data_p *info)
 }
 
 /**
- * find_cmd - finds a command in PATH
+ * commandFinder - finds a command in PATH
  * @info: the parameter & return info struct
  *
  * Return: void
  */
-void find_cmd(data_p *info)
+void commandFinder(data_p *info)
 {
 	char *path = NULL;
 	int i, k;

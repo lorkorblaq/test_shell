@@ -108,7 +108,7 @@ typedef struct builtinto
 /* toem_shloop.c */
 int hsh(data_p *, char **);
 int builtIntoFinder(data_p *);
-void find_cmd(data_p *);
+void commandFinder(data_p *);
 void fork_cmd(data_p *);
 
 /* toem_parser.c */
