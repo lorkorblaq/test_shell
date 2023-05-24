@@ -3,7 +3,7 @@
 /**
  * getenv() this gets the string array which the environments abide
  */
-char **get_environ(data_p *info)
+char **getEnviron(data_p *info)
 {
 	if (!info->environ || info->env_changed)
 	{
@@ -14,12 +14,12 @@ char **get_environ(data_p *info)
 }
 
 /**
- * _unsetenv - Remove an environment variable
+ * environUnSet - Remove an environment variable
  * @info is a structure of containing arguments
  * Return, 1 on delete, 0 if failed otherwise
  * @var: the string env var property
  */
-int _unsetenv(data_p *info, char *var)
+int environUnSet(data_p *info, char *var)
 {
 	list_t *node = info->env;
 	size_t i = 0;
@@ -44,10 +44,10 @@ int _unsetenv(data_p *info, char *var)
 	return (info->env_changed);
 }
 /**
- * _setenv - Initialize a new environment variable, or modify an existing one
+ * environSet - Initialize a new environment variable, or modify an existing one
  *  Return: Always 0
  */
-int _setenv(data_p *info, char *var, char *value)
+int environSet(data_p *info, char *var, char *value)
 {
 	char *buf = NULL;
 	list_t *node;

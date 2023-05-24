@@ -47,7 +47,7 @@ typedef struct liststr
 	struct liststr *next;
 } list_t;
 /**
- *struct passinfo - contains pseudo-arguements to pass into a function,
+ *struct infoParser - contains pseudo-arguements to pass into a function,
  *@environ,copy of environ from LL env
  *@status, the return status of the last exec'd command
  *@cmd_buf, address of pointer to cmd_buf, on if chaining
@@ -66,7 +66,7 @@ typedef struct liststr
  *@path, a string path for the current command
  *@env, linked list local copy of environ
  */
-typedef struct passinfo
+typedef struct infoParser
 {
 	char *arg;
 	char **argv;
@@ -95,19 +95,19 @@ typedef struct passinfo
 
 /**
  *struct contains a related function and a string of bulltein
- *@type, builtin command flag
+ *@type, builtinto command flag
  *@func, function
  */
-typedef struct builtin
+typedef struct builtinto
 {
 	char *type;
 	int (*func)(data_p *);
-} builtin_table;
+} builtinto_table;
 
 
 /* toem_shloop.c */
 int hsh(data_p *, char **);
-int find_builtin(data_p *);
+int builtIntoFinder(data_p *);
 void find_cmd(data_p *);
 void fork_cmd(data_p *);
 
@@ -167,12 +167,12 @@ int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
-/* _builtin.c */
+/* _builtinto.c */
 int _myexit(data_p *);
 int _mycd(data_p *);
 int _myhelp(data_p *);
 
-/* _builtin1.c */
+/* _builtinto1.c */
 int _myhistory(data_p *);
 int _myalias(data_p *);
 
@@ -194,9 +194,9 @@ int _myunsetenv(data_p *);
 int populate_env_list(data_p *);
 
 /* _getenv.c */
-char **get_environ(data_p *);
-int _unsetenv(data_p *, char *);
-int _setenv(data_p *, char *, char *);
+char **getEnviron(data_p *);
+int environUnSet(data_p *, char *);
+int environSet(data_p *, char *, char *);
 
 /* _history.c */
 char *historyFileGotten(data_p *info);

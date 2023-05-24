@@ -10,9 +10,9 @@
 int hsh(data_p *info, char **av)
 {
 	ssize_t r = 0;
-	int builtin_ret = 0;
+	int builtinto_ret = 0;
 
-	while (r != -1 && builtin_ret != -2)
+	while (r != -1 && builtinto_ret != -2)
 	{
 		clear_info(info);
 		if (interactive(info))
@@ -22,8 +22,8 @@ int hsh(data_p *info, char **av)
 		if (r != -1)
 		{
 			set_info(info, av);
-			builtin_ret = find_builtin(info);
-			if (builtin_ret == -1)
+			builtinto_ret = builtIntoFinder(info);
+			if (builtinto_ret == -1)
 				find_cmd(info);
 		}
 		else if (interactive(info))
@@ -34,28 +34,28 @@ int hsh(data_p *info, char **av)
 	free_info(info, 1);
 	if (!interactive(info) && info->status)
 		exit(info->status);
-	if (builtin_ret == -2)
+	if (builtinto_ret == -2)
 	{
 		if (info->err_num == -1)
 			exit(info->status);
 		exit(info->err_num);
 	}
-	return (builtin_ret);
+	return (builtinto_ret);
 }
 
 /**
- * find_builtin - finds a builtin command
+ * builtIntoFinder - finds a builtinto command
  * @info: the parameter & return info struct
  *
- * Return: -1 if builtin not found,
- *			0 if builtin executed successfully,
- *			1 if builtin found but not successful,
- *			-2 if builtin signals exit()
+ * Return: -1 if builtinto not found,
+ *			0 if builtinto executed successfully,
+ *			1 if builtinto found but not successful,
+ *			-2 if builtinto signals exit()
  */
-int find_builtin(data_p *info)
+int builtIntoFinder(data_p *info)
 {
 	int i, built_in_ret = -1;
-	builtin_table builtintbl[] = {
+	builtinto_table builtintotbl[] = {
 		{"exit", _myexit},
 		{"env", _myenv},
 		{"help", _myhelp},
@@ -67,11 +67,11 @@ int find_builtin(data_p *info)
 		{NULL, NULL}
 	};
 
-	for (i = 0; builtintbl[i].type; i++)
-		if (_strcmp(info->argv[0], builtintbl[i].type) == 0)
+	for (i = 0; builtintotbl[i].type; i++)
+		if (_strcmp(info->argv[0], builtintotbl[i].type) == 0)
 		{
 			info->line_count++;
-			built_in_ret = builtintbl[i].func(info);
+			built_in_ret = builtintotbl[i].func(info);
 			break;
 		}
 	return (built_in_ret);
@@ -138,7 +138,7 @@ void fork_cmd(data_p *info)
 	}
 	if (child_pid == 0)
 	{
-		if (execve(info->path, info->argv, get_environ(info)) == -1)
+		if (execve(info->path, info->argv, getEnviron(info)) == -1)
 		{
 			free_info(info, 1);
 			if (errno == EACCES)

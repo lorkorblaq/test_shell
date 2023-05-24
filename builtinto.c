@@ -73,8 +73,8 @@ int _mycd(data_p *info)
 	}
 	else
 	{
-		_setenv(info, "OLDPWD", _getenv(info, "PWD="));
-		_setenv(info, "PWD", getcwd(buffer, 1024));
+		environSet(info, "OLDPWD", _getenv(info, "PWD="));
+		environSet(info, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);
 }
