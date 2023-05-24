@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * _myenv - prints the current environment
+ * myEnv - prints the current environment
  * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  * Return: Always 0
  */
-int _myenv(data_p *info)
+int myEnv(data_p *info)
 {
 	strListP(info->env);
 	return (0);
@@ -35,13 +35,13 @@ char *_getenv(data_p *info, const char *name)
 }
 
 /**
- * _mysetenv - Initialize a new environment variable,
+ * mySetEnv - Initialize a new environment variable,
  *             or modify an existing one
  * @info: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
  *  Return: Always 0
  */
-int _mysetenv(data_p *info)
+int mySetEnv(data_p *info)
 {
 	if (info->argc != 3)
 	{
@@ -54,12 +54,12 @@ int _mysetenv(data_p *info)
 }
 
 /**
- * _myunsetenv - Remove an environment variable
+ * myUnSetEnv - Remove an environment variable
  * @info: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
  *  Return: Always 0
  */
-int _myunsetenv(data_p *info)
+int myUnSetEnv(data_p *info)
 {
 	int i;
 

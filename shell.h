@@ -188,9 +188,9 @@ void free_info(data_p *, int);
 
 /* _environ.c */
 char *_getenv(data_p *, const char *);
-int _myenv(data_p *);
-int _mysetenv(data_p *);
-int _myunsetenv(data_p *);
+int myEnv(data_p *);
+int mySetEnv(data_p *);
+int myUnSetEnv(data_p *);
 int populate_env_list(data_p *);
 
 /* _getenv.c */

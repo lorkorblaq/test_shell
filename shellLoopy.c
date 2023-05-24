@@ -57,11 +57,11 @@ int builtIntoFinder(data_p *info)
 	int i, built_in_ret = -1;
 	builtinto_table builtintotbl[] = {
 		{"exit", _myexit},
-		{"env", _myenv},
+		{"env", myEnv},
 		{"help", _myhelp},
 		{"history", _myhistory},
-		{"setenv", _mysetenv},
-		{"unsetenv", _myunsetenv},
+		{"setenv", mySetEnv},
+		{"unsetenv", myUnSetEnv},
 		{"cd", _mycd},
 		{"alias", _myalias},
 		{NULL, NULL}
